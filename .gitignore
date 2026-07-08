@@ -1,0 +1,7 @@
+.env
+*.log
+*.response.json
+4xx-bodies/
+node_modules/
+.DS_Store
+Thumbs.db

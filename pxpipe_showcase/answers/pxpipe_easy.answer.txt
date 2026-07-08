@@ -1,0 +1,1 @@
+{"issue":"hard_cap_slo_breach","tenant":"canva","service":"fulfillment","region":"sfo","budget":661500}

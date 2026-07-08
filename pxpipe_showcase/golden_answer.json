@@ -1,0 +1,108 @@
+{
+  "final_tenant_state": {
+    "atlas": {
+      "owner": "dee",
+      "budget": 495500,
+      "service_anchor": "queue"
+    },
+    "beacon": {
+      "owner": "fay",
+      "budget": 537000,
+      "service_anchor": "edge"
+    },
+    "cinder": {
+      "owner": "hal",
+      "budget": 578500,
+      "service_anchor": "lake"
+    },
+    "delta": {
+      "owner": "bo",
+      "budget": 620000,
+      "service_anchor": "metrics"
+    },
+    "ember": {
+      "owner": "dee",
+      "budget": 661500,
+      "service_anchor": "notebook"
+    },
+    "flux": {
+      "owner": "fay",
+      "budget": 703000,
+      "service_anchor": "auth"
+    },
+    "grove": {
+      "owner": "hal",
+      "budget": 744500,
+      "service_anchor": "billing"
+    }
+  },
+  "region_decision_counts": {
+    "iad": {
+      "approve": 171,
+      "deny": 162,
+      "review": 171
+    },
+    "sfo": {
+      "approve": 171,
+      "deny": 162,
+      "review": 171
+    },
+    "fra": {
+      "approve": 171,
+      "deny": 162,
+      "review": 171
+    },
+    "sin": {
+      "approve": 171,
+      "deny": 162,
+      "review": 171
+    }
+  },
+  "top_three_services_by_budget": [
+    {
+      "service": "notebook",
+      "budget": 4930682
+    },
+    {
+      "service": "metrics",
+      "budget": 4917878
+    },
+    {
+      "service": "lake",
+      "budget": 4905074
+    }
+  ],
+  "high_budget_tenants": [
+    {
+      "tenant": "beacon",
+      "budget": 537000,
+      "owner": "fay"
+    },
+    {
+      "tenant": "cinder",
+      "budget": 578500,
+      "owner": "hal"
+    },
+    {
+      "tenant": "delta",
+      "budget": 620000,
+      "owner": "bo"
+    },
+    {
+      "tenant": "ember",
+      "budget": 661500,
+      "owner": "dee"
+    },
+    {
+      "tenant": "flux",
+      "budget": 703000,
+      "owner": "fay"
+    },
+    {
+      "tenant": "grove",
+      "budget": 744500,
+      "owner": "hal"
+    }
+  ],
+  "grading_note": "Exact seq values and opaque note fragments are intentionally irrelevant."
+}

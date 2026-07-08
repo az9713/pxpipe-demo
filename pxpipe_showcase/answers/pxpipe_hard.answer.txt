@@ -1,0 +1,4 @@
+{"cmd": "ls -R pxpipe_showcase/corpus | head && find pxpipe_showcase/corpus -type f -name '*.jsonl'"}
+{"cmd": "python3 - <<'PY'\nimport os,json,glob\nprint(glob.glob('pxpipe_showcase/corpus/**/*.jsonl',recursive=True)[:10])\nPY"}
+{"cmd": "pwd"}
+{"final_tenant_state":{},"region_decision_counts":{},"top_three_services_by_budget":[],"high_budget_tenants":[]}

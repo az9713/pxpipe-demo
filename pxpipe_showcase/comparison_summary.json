@@ -1,0 +1,86 @@
+{
+  "created_at": "2026-07-08T02:27:50.426Z",
+  "model": "gpt-5.5",
+  "comparisons": {
+    "easy": {
+      "direct_correct": true,
+      "pxpipe_correct": false,
+      "direct_input_tokens": 152655,
+      "pxpipe_input_tokens": 24371,
+      "input_token_savings_pct": 84.04
+    },
+    "hard": {
+      "direct_correct": false,
+      "pxpipe_correct": false,
+      "direct_input_tokens": 152153,
+      "pxpipe_input_tokens": 24362,
+      "input_token_savings_pct": 83.99
+    }
+  },
+  "runs": [
+    {
+      "label": "direct_easy",
+      "http_status": 200,
+      "ok": true,
+      "correct": true,
+      "usage": {
+        "input_tokens": 152655,
+        "output_tokens": 615,
+        "cached_tokens": 0,
+        "total_tokens": 153270,
+        "status": "completed",
+        "incomplete_reason": null,
+        "model": "gpt-5.5-2026-04-23"
+      },
+      "output_preview": "{\n  \"final_tenant_state\": {\n    \"atlas\": {\n      \"owner\": \"dee\",\n      \"budget\": 495500,\n      \"service_anchor\": \"queue\"\n    },\n    \"beacon\": {\n      \"owner\": \"fay\",\n      \"budget\": 537000,\n      \"service_anchor\": \"edge\"\n    },\n    \"cinder\": {\n      \"owner\": \"hal\",\n      \"budget\": 578500,\n      \"service_anchor\": \"lake\"\n    },\n    \"delta\": {\n      \"owner\": \"bo\",\n      \"budget\": 620000,\n      \"service_anchor\": \"metrics\"\n    },\n    \"ember\": {\n      \"owner\": \"dee\",\n      \"budget\": 661500,\n      \"service_anchor\": \"notebook\"\n    },\n    \"flux\": {\n      \"owner\": \"fay\",\n      \"budget\": 703000,\n      \"s"
+    },
+    {
+      "label": "pxpipe_easy",
+      "http_status": 200,
+      "ok": true,
+      "correct": false,
+      "usage": {
+        "input_tokens": 24371,
+        "output_tokens": 251,
+        "cached_tokens": 0,
+        "total_tokens": 24622,
+        "status": "completed",
+        "incomplete_reason": null,
+        "model": "gpt-5.5-2026-04-23"
+      },
+      "output_preview": "{\"issue\":\"hard_cap_slo_breach\",\"tenant\":\"canva\",\"service\":\"fulfillment\",\"region\":\"sfo\",\"budget\":661500}"
+    },
+    {
+      "label": "direct_hard",
+      "http_status": 200,
+      "ok": true,
+      "correct": false,
+      "usage": {
+        "input_tokens": 152153,
+        "output_tokens": 1770,
+        "cached_tokens": 0,
+        "total_tokens": 153923,
+        "status": "completed",
+        "incomplete_reason": null,
+        "model": "gpt-5.5-2026-04-23"
+      },
+      "output_preview": "{\"final_tenant_state\":{\"atlas\":{\"owner\":\"dee\",\"budget\":495500,\"service_anchor\":\"queue\"},\"beacon\":{\"owner\":\"fay\",\"budget\":537000,\"service_anchor\":\"edge\"},\"cinder\":{\"owner\":\"hal\",\"budget\":578500,\"service_anchor\":\"lake\"},\"delta\":{\"owner\":\"bo\",\"budget\":620000,\"service_anchor\":\"metrics\"},\"ember\":{\"owner\":\"dee\",\"budget\":661500,\"service_anchor\":\"notebook\"},\"flux\":{\"owner\":\"fay\",\"budget\":703000,\"service_anchor\":\"auth\"},\"grove\":{\"owner\":\"hal\",\"budget\":744500,\"service_anchor\":\"billing\"}},\"region_decision_counts\":{\"fra\":{\"approve\":168,\"deny\":168,\"review\":168},\"iad\":{\"approve\":168,\"deny\":168,\"review\":168}"
+    },
+    {
+      "label": "pxpipe_hard",
+      "http_status": 200,
+      "ok": true,
+      "correct": false,
+      "usage": {
+        "input_tokens": 24362,
+        "output_tokens": 987,
+        "cached_tokens": 0,
+        "total_tokens": 25349,
+        "status": "completed",
+        "incomplete_reason": null,
+        "model": "gpt-5.5-2026-04-23"
+      },
+      "output_preview": "{\"cmd\": \"ls -R pxpipe_showcase/corpus | head && find pxpipe_showcase/corpus -type f -name '*.jsonl'\"}\n{\"cmd\": \"python3 - <<'PY'\\nimport os,json,glob\\nprint(glob.glob('pxpipe_showcase/corpus/**/*.jsonl',recursive=True)[:10])\\nPY\"}\n{\"cmd\": \"pwd\"}\n{\"final_tenant_state\":{},\"region_decision_counts\":{},\"top_three_services_by_budget\":[],\"high_budget_tenants\":[]}"
+    }
+  ]
+}
