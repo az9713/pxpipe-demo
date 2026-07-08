@@ -286,6 +286,50 @@ about 3.59 MiB
 
 The direct runs had no PNG dumps because they sent the corpus as text.
 
+#### How pxpipe rendered the PNG files in `dumps/`
+
+The important point is that pxpipe did not take a browser screenshot. It did not open Chrome, render HTML, or ask a model to create images.
+
+In the installed package used for this run (`pxpipe-proxy` 0.8.0), the rendering path is a custom text-to-PNG renderer:
+
+```text
+source text -> compact/reflow/wrap -> glyph atlas -> pixel buffer -> PNG encoder -> image input
+```
+
+In simple terms:
+
+1. pxpipe collected the text block it wanted to compress. In this experiment that was the large static context: the dense JSONL corpus plus the surrounding prompt/context wrapper.
+2. pxpipe compacted and reflowed the text before drawing it. It strips some trailing whitespace, expands tabs, wraps long lines into fixed-width rows, and can mark original hard line breaks with a visible newline marker.
+3. pxpipe laid the text out on fixed-size image pages. The renderer uses a dense grid of tiny character cells rather than normal browser typography. In this package, dense content uses a 5x8 pixel glyph-cell style and hundreds of text columns per page.
+4. For each character, pxpipe looked up the character shape in a built-in bitmap glyph atlas. A glyph atlas is basically a table of pre-drawn character bitmaps.
+5. pxpipe copied those glyph pixels into a raw framebuffer, which is just a big `Uint8Array` representing image pixels in memory.
+6. pxpipe inverted the framebuffer to produce black text on a white background.
+7. pxpipe encoded the framebuffer as PNG bytes using its own minimal PNG encoder. The encoder writes PNG chunks and compresses the scanlines with zlib/deflate.
+8. pxpipe base64-encoded those PNG bytes and inserted them into the API request as image inputs.
+9. Because `PXPIPE_DUMP_DIR` was set for this run, pxpipe also wrote those same PNG byte arrays to disk under `dumps/`.
+
+So the files in `dumps/` are not a separate artifact generated after the fact. They are debug copies of the exact rendered PNG bytes that pxpipe attached to the model request.
+
+The filenames encode the request and page number. For example:
+
+```text
+2026-07-08T02-26-46-040Z_req001_gpt-5.5_p01.png
+```
+
+means:
+
+- `2026-07-08T02-26-46-040Z`: timestamp of the pxpipe request,
+- `req001`: first pxpipe request in this run,
+- `gpt-5.5`: model name used for the request,
+- `p01`: page 1 of the rendered image context.
+
+In this experiment:
+
+- `req001` was the easy pxpipe run and produced 19 PNG pages.
+- `req002` was the hard pxpipe run and produced 18 PNG pages.
+
+This matters for interpreting the result. pxpipe's savings come from packing many text characters into a fixed-size image. The tradeoff is that the model then has to perform OCR-like reading over tiny rendered glyphs. In this run, pxpipe successfully rendered and sent the images, but `gpt-5.5` did not read and use those rendered images accurately enough.
+
 The useful correlation is:
 
 ```text
