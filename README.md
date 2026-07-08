@@ -1,6 +1,6 @@
 # pxpipe-demo
 
-This repo contains a small, reproducible pxpipe experiment inspired by the video ["NEW Fable 5 API Usage Exploit (Reduce Costs Immediately)"](https://www.youtube.com/watch?v=dzfFN0RgPlI).
+This repo contains a small, reproducible experiment with [teamchong/pxpipe](https://github.com/teamchong/pxpipe), inspired by the video ["NEW Fable 5 API Usage Exploit (Reduce Costs Immediately)"](https://www.youtube.com/watch?v=dzfFN0RgPlI).
 
 The video's core idea is that some large static text contexts may be cheaper to send as rendered images than as normal text tokens. This repo tests that idea in a simple 2x2 benchmark: direct text input versus pxpipe image-compressed input, on an easy copying task and a harder ledger aggregation task.
 
