@@ -24,10 +24,21 @@ pxpipe rendered that static context into PNG images for the compressed runs:
 
 ## The 2x2 Design
 
+The corpus uses synthetic operational data. The names are fake, but the structure is meant to resemble the kind of dense business log that people often paste into a model.
+
+Key terms:
+
+- Ledger: the collection of JSONL rows. Each row is one event, like a business log entry.
+- Tenant: a fake customer or account, such as `atlas`, `beacon`, or `cinder`.
+- Tenant state: the latest known owner, budget, and main service for each tenant. Some rows update this state, and the final answer should use the last update for each tenant.
+- Region counts: totals by region, such as `iad`, `sfo`, `fra`, and `sin`, counting how many decisions were `approve`, `deny`, or `review`.
+- Top services: the services with the largest total budget after adding up all matching ledger rows.
+- High-budget tenants: tenants whose final budget is at least 500,000.
+
 There are two tasks:
 
 1. Easy answer-card task: the expected JSON answer is placed inside the static context and the model only needs to copy it.
-2. Hard ledger task: the model must aggregate the JSONL ledger and compute final tenant state, region counts, top services, and high-budget tenants.
+2. Hard ledger task: the model must read the JSONL event log and calculate the final account summary: latest tenant state, decision totals by region, highest-budget services, and tenants over the budget threshold.
 
 Each task is run two ways:
 
